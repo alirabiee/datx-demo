@@ -9,11 +9,14 @@ import java.util.List;
 
 /**
  * This class represents the repository for answer sheets.
- *
+ * <p>
  * Created by A on 2016-08-05.
  */
 @Repository
 public interface AnswerSheetRepository extends CrudRepository< AnswerSheet, Long > {
     List< AnswerSheet > findByQuestionnaire(Questionnaire questionnaire);
+
     List< AnswerSheet > findByQuestionnaireAndUser(Questionnaire questionnaire, User user);
+
+    void deleteByQuestionnaireId(Long questionnaireId);
 }

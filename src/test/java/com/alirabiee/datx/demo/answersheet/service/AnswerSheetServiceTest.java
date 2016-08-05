@@ -10,6 +10,7 @@ import com.alirabiee.datx.demo.questionnaire.domain.Questionnaire;
 import com.alirabiee.datx.demo.questionnaire.service.QuestionnaireService;
 import com.alirabiee.datx.enterprise.user.domain.User;
 import com.alirabiee.datx.enterprise.user.service.UserService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
@@ -30,6 +31,9 @@ import java.util.List;
 @RunWith( SpringRunner.class )
 @SpringBootTest( classes = { DatxApplication.class, MvcConfig.class } )
 public class AnswerSheetServiceTest {
+
+    private static boolean setupIsDone = false;
+
     @Autowired
     AnswerSheetService answerSheetService;
     @Autowired
@@ -38,6 +42,19 @@ public class AnswerSheetServiceTest {
     QuestionService questionService;
     @MockBean
     UserService userService;
+
+    @Before
+    public void setup() {
+        BDDMockito.given( userService.getCurrentUser() ).willReturn( new User( 1L, "admin", "dummypass" ) );
+
+        if ( setupIsDone ) {
+            return;
+        }
+
+        answerSheetService.deleteByQuestionnaireId( 1L );
+
+        setupIsDone = true;
+    }
 
     @Test
     public void testSave() throws Exception {
@@ -62,8 +79,11 @@ public class AnswerSheetServiceTest {
             answers.add( answerBuilder.build() );
         }
 
-        BDDMockito.given( userService.getCurrentUser() ).willReturn( new User( 1L, "admin", "dummypass" ) );
-
         answerSheetService.save( answerSheet, answers );
+    }
+
+    @Test( expected = AnswerSheetAlreadyExistsException.class )
+    public void testSaveAgain() throws Exception {
+        testSave();
     }
 }

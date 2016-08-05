@@ -21,6 +21,11 @@ public class AnswerServiceImpl implements AnswerService {
         return repository.save( answer );
     }
 
+    @Override
+    public void deleteByAnswerSheetQuestionnaireId(final Long questionnaireId) {
+        repository.deleteByAnswerSheetQuestionnaireId( questionnaireId );
+    }
+
     private void validateAnswer(final Answer answer) throws ValidationException {
         if ( answer.getChoiceIndex() == null ) {
             throw new UndefinedChoiceIndexException();

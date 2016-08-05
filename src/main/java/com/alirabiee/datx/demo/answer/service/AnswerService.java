@@ -8,4 +8,6 @@ import com.alirabiee.datx.demo.answer.domain.Answer;
  */
 public interface AnswerService {
     Answer save(Answer answer) throws ValidationException;
+
+    void deleteByAnswerSheetQuestionnaireId(Long questionnaireId);
 }

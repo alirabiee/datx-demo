@@ -94,4 +94,12 @@ public class AnswerSheetServiceImpl implements AnswerSheetService {
     public void delete(final Long id) {
         repository.delete( id );
     }
+
+    @Override
+    @Transactional( rollbackOn = Throwable.class )
+    public void deleteByQuestionnaireId(final Long questionnaireId) {
+        answerService.deleteByAnswerSheetQuestionnaireId( questionnaireId );
+        repository.deleteByQuestionnaireId( questionnaireId );
+    }
+
 }

@@ -23,4 +23,8 @@ public interface AnswerSheetService {
     AnswerSheet save(AnswerSheet answerSheet, List< Answer > answers) throws ValidationException;
 
     void delete(Long id);
+
+//    void deleteByQuestionnaire(Questionnaire questionnaire);
+
+    void deleteByQuestionnaireId(Long questionnaireId);
 }
