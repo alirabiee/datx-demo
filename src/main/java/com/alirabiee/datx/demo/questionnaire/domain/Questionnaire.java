@@ -10,7 +10,6 @@ import javax.persistence.Entity;
  *
  * Created by A on 2016-08-04.
  */
-@SuppressWarnings( "Lombok" )
 @Data
 @Entity
 @Builder( toBuilder = true )
