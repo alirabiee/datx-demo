@@ -2,6 +2,8 @@ package com.alirabiee.datx.demo.questionnaire.service;
 
 import com.alirabiee.datx.DatxApplication;
 import com.alirabiee.datx.MvcConfig;
+import com.alirabiee.datx.demo.questionnaire.domain.Questionnaire;
+import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +11,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
+ * This class contains the tests for the questionnaire service.
+ *
  * Created by A on 2016-08-05.
  */
+@SuppressWarnings( "SpringJavaAutowiredMembersInspection" )
 @RunWith( SpringRunner.class )
 @SpringBootTest( classes = { DatxApplication.class, MvcConfig.class } )
 public class QuestionnaireServiceTest {
@@ -19,8 +24,48 @@ public class QuestionnaireServiceTest {
 
     @Test
     public void testGetAll() throws Exception {
-        System.out.println( "QuestionnaireServiceTest.testGetAll" );
         questionnaireService.findAll();
-        System.out.println( "QuestionnaireServiceTest.testGetAll [OK]" );
+    }
+
+    @Test
+    public void testSaveNonPrimary() throws Exception {
+        final Questionnaire.QuestionnaireBuilder builder = new Questionnaire().toBuilder();
+
+        builder.title( "Test Questionnaire" )
+               .isPrimary( false );
+
+        questionnaireService.save( builder.build() );
+    }
+
+    @Test
+    public void testSavePrimary() throws Exception {
+        final Questionnaire.QuestionnaireBuilder builder = new Questionnaire().toBuilder();
+
+        builder.title( "Test Primary Questionnaire" )
+               .isPrimary( true );
+
+        final Questionnaire questionnaire = builder.build();
+
+        questionnaireService.save( questionnaire );
+
+        final Questionnaire thePrimary = questionnaireService.findThePrimary();
+
+        Assertions.assertThat( thePrimary ).isEqualTo( questionnaire );
+    }
+
+    @Test
+    public void testSaveSecondPrimary() throws Exception {
+        final Questionnaire.QuestionnaireBuilder builder = new Questionnaire().toBuilder();
+
+        builder.title( "Test Second Primary Questionnaire" )
+               .isPrimary( true );
+
+        final Questionnaire questionnaire = builder.build();
+
+        questionnaireService.save( questionnaire );
+
+        final Questionnaire thePrimary = questionnaireService.findThePrimary();
+
+        Assertions.assertThat( thePrimary ).isEqualTo( questionnaire );
     }
 }
