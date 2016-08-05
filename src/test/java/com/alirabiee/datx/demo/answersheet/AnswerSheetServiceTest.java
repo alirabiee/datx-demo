@@ -1,9 +1,11 @@
-package com.alirabiee.datx.demo.answersheet.service;
+package com.alirabiee.datx.demo.answersheet;
 
-import com.alirabiee.datx.DatxApplication;
+import com.alirabiee.datx.DatxTestApplication;
 import com.alirabiee.datx.MvcConfig;
 import com.alirabiee.datx.demo.answer.domain.Answer;
 import com.alirabiee.datx.demo.answersheet.domain.AnswerSheet;
+import com.alirabiee.datx.demo.answersheet.service.AnswerSheetAlreadyExistsException;
+import com.alirabiee.datx.demo.answersheet.service.AnswerSheetService;
 import com.alirabiee.datx.demo.question.domain.Question;
 import com.alirabiee.datx.demo.question.service.QuestionService;
 import com.alirabiee.datx.demo.questionnaire.domain.Questionnaire;
@@ -29,7 +31,7 @@ import java.util.List;
  */
 @SuppressWarnings( "SpringJavaAutowiredMembersInspection" )
 @RunWith( SpringRunner.class )
-@SpringBootTest( classes = { DatxApplication.class, MvcConfig.class } )
+@SpringBootTest( classes = { DatxTestApplication.class, MvcConfig.class } )
 public class AnswerSheetServiceTest {
 
     private static boolean setupIsDone = false;

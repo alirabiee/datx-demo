@@ -1,8 +1,9 @@
-package com.alirabiee.datx.demo.questionnaire.service;
+package com.alirabiee.datx.demo.questionnaire;
 
-import com.alirabiee.datx.DatxApplication;
+import com.alirabiee.datx.DatxTestApplication;
 import com.alirabiee.datx.MvcConfig;
 import com.alirabiee.datx.demo.questionnaire.domain.Questionnaire;
+import com.alirabiee.datx.demo.questionnaire.service.QuestionnaireService;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @SuppressWarnings( "SpringJavaAutowiredMembersInspection" )
 @RunWith( SpringRunner.class )
-@SpringBootTest( classes = { DatxApplication.class, MvcConfig.class } )
+@SpringBootTest( classes = { DatxTestApplication.class, MvcConfig.class } )
 public class QuestionnaireServiceTest {
     @Autowired
     private QuestionnaireService questionnaireService;
