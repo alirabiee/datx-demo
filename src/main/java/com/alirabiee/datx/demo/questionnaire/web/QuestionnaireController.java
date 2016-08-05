@@ -26,7 +26,7 @@ public class QuestionnaireController {
     }
 
     @RequestMapping( value = "/questionnaire", method = RequestMethod.POST )
-    public Questionnaire addQuestionnaire(
+    public Questionnaire saveQuestionnaire(
         @RequestBody Questionnaire questionnaire
     ) {
         return service.save( questionnaire );

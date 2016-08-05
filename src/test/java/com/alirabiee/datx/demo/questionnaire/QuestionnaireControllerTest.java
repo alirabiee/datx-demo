@@ -47,4 +47,14 @@ public class QuestionnaireControllerTest {
                          .content( "{\"title\":\"hahaha\"}" ) )
            .andExpect( status().isOk() );
     }
+
+    @Test
+    public void testUpdateQuestionnaire() throws Exception {
+        mvc.perform( MockMvcRequestBuilders
+                         .post( "/questionnaire" )
+                         .accept( MediaType.APPLICATION_JSON )
+                         .contentType( MediaType.APPLICATION_JSON )
+                         .content( "{\"title\":\"hahaha" + Math.random() + "\", \"id\":118, \"isPrimary\": true}" ) )
+           .andExpect( status().isOk() );
+    }
 }
