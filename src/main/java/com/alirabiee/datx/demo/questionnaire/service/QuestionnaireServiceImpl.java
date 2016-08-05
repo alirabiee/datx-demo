@@ -33,7 +33,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
     }
 
     @Override
-    @Transactional
+    @Transactional( rollbackOn = Throwable.class )
     public Questionnaire save(final Questionnaire questionnaire) {
         if ( Is.yes( questionnaire.getIsPrimary() ) ) {
             final Questionnaire primary = findThePrimary();

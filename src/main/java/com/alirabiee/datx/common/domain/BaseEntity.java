@@ -17,6 +17,19 @@ public abstract class BaseEntity {
     protected Boolean enabled = false;
     protected String description;
 
+    public BaseEntity() {
+    }
+
+    public BaseEntity(final Long id) {
+        this.id = id;
+    }
+
+    public BaseEntity(final Long id, final Boolean enabled, final String description) {
+        this.id = id;
+        this.enabled = enabled;
+        this.description = description;
+    }
+
     @Id
     @GeneratedValue
     public Long getId() {
@@ -27,5 +40,5 @@ public abstract class BaseEntity {
     public String getDescription() {
         return description;
     }
-    
+
 }

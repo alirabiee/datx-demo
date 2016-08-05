@@ -1,8 +1,10 @@
 package com.alirabiee.datx.demo.question.service;
 
+import com.alirabiee.datx.common.exception.ValidationException;
 import com.alirabiee.datx.demo.question.domain.Question;
 import com.alirabiee.datx.demo.question.domain.QuestionRepository;
 import com.alirabiee.datx.demo.questionnaire.domain.Questionnaire;
+import com.alirabiee.datx.util.Is;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +29,27 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Question save(final Question question) {
+    public Question save(final Question question) throws ValidationException {
+        validateQuestion( question );
+
         return repository.save( question );
+    }
+
+    private void validateQuestion(final Question question) throws ValidationException {
+        if ( question.getQuestionnaire() == null ) {
+            throw new UndefinedQuestionnaireException();
+        }
+
+        if ( Is.empty( question.getTitle() ) ) {
+            throw new UndefinedTitleException();
+        }
+
+        if ( Is.empty( question.getChoice1() )
+             || Is.empty( question.getChoice2() )
+             || Is.empty( question.getChoice3() )
+             || Is.empty( question.getChoice4() ) ) {
+            throw new AllChoicesRequiredException();
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.alirabiee.datx.demo.question.service;
 
+import com.alirabiee.datx.common.exception.ValidationException;
 import com.alirabiee.datx.demo.question.domain.Question;
 import com.alirabiee.datx.demo.questionnaire.domain.Questionnaire;
 
@@ -13,7 +14,7 @@ public interface QuestionService {
 
     Question find(Long id);
 
-    Question save(Question question);
+    Question save(Question question) throws ValidationException;
 
     void delete(Long id);
 }

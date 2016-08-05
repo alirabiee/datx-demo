@@ -13,4 +13,25 @@ import javax.persistence.Entity;
 public class User extends BaseEntity {
     private String username;
     private String password;
+
+    public User() {
+    }
+
+    public User(final String username, final String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(final Long id, final String username, final String password) {
+        super( id );
+        this.username = username;
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+               "username='" + username + '\'' +
+               "} " + super.toString();
+    }
 }
