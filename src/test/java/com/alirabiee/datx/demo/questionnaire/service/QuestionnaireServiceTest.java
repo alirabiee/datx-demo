@@ -50,7 +50,7 @@ public class QuestionnaireServiceTest {
 
         final Questionnaire thePrimary = questionnaireService.findThePrimary();
 
-        Assertions.assertThat( thePrimary ).isEqualTo( questionnaire );
+        Assertions.assertThat( questionnaire ).isEqualToComparingOnlyGivenFields( thePrimary, "id" );
     }
 
     @Test
@@ -66,6 +66,6 @@ public class QuestionnaireServiceTest {
 
         final Questionnaire thePrimary = questionnaireService.findThePrimary();
 
-        Assertions.assertThat( thePrimary ).isEqualTo( questionnaire );
+        Assertions.assertThat( questionnaire ).isEqualToComparingOnlyGivenFields( thePrimary, "id" );
     }
 }

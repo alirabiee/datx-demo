@@ -1,5 +1,7 @@
 package com.alirabiee.datx.demo.questionnaire.domain;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +15,8 @@ import java.util.List;
 @Repository
 public interface QuestionnaireRepository extends PagingAndSortingRepository< Questionnaire, Long > {
     List< Questionnaire > findAll();
+
+    Page< Questionnaire > findAll(Pageable pageable);
 
     Questionnaire findByIsPrimary(Boolean isPrimary);
 }

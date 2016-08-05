@@ -40,5 +40,4 @@ public abstract class BaseEntity {
     public String getDescription() {
         return description;
     }
-
 }

@@ -24,6 +24,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public Long countByQuestionnaire(final Questionnaire questionnaire) {
+        return repository.countByQuestionnaire( questionnaire );
+    }
+
+    @Override
     public Question find(final Long id) {
         return repository.findOne( id );
     }

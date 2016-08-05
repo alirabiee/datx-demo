@@ -1,6 +1,8 @@
 package com.alirabiee.datx.demo.questionnaire.service;
 
 import com.alirabiee.datx.demo.questionnaire.domain.Questionnaire;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -9,6 +11,8 @@ import java.util.List;
  */
 public interface QuestionnaireService {
     List< Questionnaire > findAll();
+
+    Page< Questionnaire > findAll(Pageable pageable);
 
     Questionnaire find(Long id);
 

@@ -5,7 +5,6 @@ import com.alirabiee.datx.demo.answer.domain.Answer;
 import com.alirabiee.datx.demo.answer.service.AnswerService;
 import com.alirabiee.datx.demo.answersheet.domain.AnswerSheet;
 import com.alirabiee.datx.demo.answersheet.domain.AnswerSheetRepository;
-import com.alirabiee.datx.demo.question.domain.Question;
 import com.alirabiee.datx.demo.question.service.QuestionService;
 import com.alirabiee.datx.demo.questionnaire.domain.Questionnaire;
 import com.alirabiee.datx.enterprise.user.domain.User;
@@ -82,11 +81,11 @@ public class AnswerSheetServiceImpl implements AnswerSheetService {
             );
         }
 
-        final List< Question > questions = questionService.findByQuestionnaire( questionnaire );
+        final Long questionsCount = questionService.countByQuestionnaire( questionnaire );
 
-        if ( answers == null || questions.size() != answers.size() ) {
+        if ( answers == null || questionsCount != answers.size() ) {
             throw new IncompleteAnswerSheetException(
-                String.format( "There are %d questions that must be answered.", questions.size() )
+                String.format( "There are %d questions that must be answered.", questionsCount )
             );
         }
     }

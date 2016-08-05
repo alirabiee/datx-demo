@@ -1,9 +1,15 @@
 package com.alirabiee.datx.demo.questionnaire.domain;
 
 import com.alirabiee.datx.common.domain.BaseEntity;
-import lombok.*;
+import com.alirabiee.datx.demo.question.domain.Question;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  * This class represents the questionnaires defined in the system.
@@ -17,7 +23,13 @@ import javax.persistence.Entity;
 public class Questionnaire extends BaseEntity {
     private String title;
     private Boolean isPrimary;
+    private List< Question > questions;
 
     public Questionnaire() {
+    }
+
+    @OneToMany( mappedBy = "questionnaire" )
+    public List< Question > getQuestions() {
+        return questions;
     }
 }

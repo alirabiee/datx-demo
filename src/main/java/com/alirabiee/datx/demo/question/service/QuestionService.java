@@ -12,6 +12,8 @@ import java.util.List;
 public interface QuestionService {
     List< Question > findByQuestionnaire(Questionnaire questionnaire);
 
+    Long countByQuestionnaire(Questionnaire questionnaire);
+
     Question find(Long id);
 
     Question save(Question question) throws ValidationException;

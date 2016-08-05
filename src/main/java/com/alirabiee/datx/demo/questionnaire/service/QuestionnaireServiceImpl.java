@@ -4,6 +4,8 @@ import com.alirabiee.datx.demo.questionnaire.domain.Questionnaire;
 import com.alirabiee.datx.demo.questionnaire.domain.QuestionnaireRepository;
 import com.alirabiee.datx.util.Is;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,6 +22,11 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
     @Override
     public List< Questionnaire > findAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public Page< Questionnaire > findAll(Pageable pageable) {
+        return repository.findAll( pageable );
     }
 
     @Override
