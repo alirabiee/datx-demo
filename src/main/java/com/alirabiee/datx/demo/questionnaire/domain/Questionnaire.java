@@ -32,4 +32,8 @@ public class Questionnaire extends BaseEntity {
     public List< Question > getQuestions() {
         return questions;
     }
+
+    public Boolean getIsPrimary() {
+        return isPrimary == null ? false : isPrimary;
+    }
 }
